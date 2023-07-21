@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/icons/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/icons/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/icons/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./img/icons/favicon/site.webmanifest">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="models/drawable-object.class.js"></script>
+    <script src="models/movable-object.class.js"></script>
+    <script src="models/character.class.js"></script>
+    <script src="models/cloud.class.js"></script>
+    <script src="models/coin.class.js"></script>
+    <script src="models/bottle.class.js"></script>
+    <script src="models/chicken.class.js"></script>
+    <script src="models/chicken-small.class.js"></script>
+    <script src="models/status-bar.class.js"></script>
+    <script src="models/health-status-bar.class.js"></script>
+    <script src="models/bottle-status-bar.class.js"></script>
+    <script src="models/coin-status-bar.class.js"></script>
+    <script src="models/endboss-status-bar.class.js"></script>
+    <script src="models/world.class.js"></script>
+    <script src="models/background-object.class.js"></script>
+    <script src="models/keyboard.class.js"></script>
+    <script src="models/level.class.js"></script>
+    <script src="models/throwable-object.class.js"></script>
+    <script src="models/endboss.class.js"></script>
+    <script src="models/icon.class.js"></script>
+    <script src="levels/level1.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/game.js"></script>
+    <title>El Pollo Loco</title>
+</head>
+
+<body onload="init()">
+    <div id="fullscreen">
+        <h1 id="header">El Pollo Loco</h1>
+        <div id="game-container">
+            <canvas id="canvas" width="720px" height="480px">
+            </canvas>
+            <div id="overlay">
+                <button id="start-game" onclick="startGame()">Spiel starten</button>
+                <button id="restart-game" class="d-none" onclick="restartGame()">Startbildschirm</button>
+                <div id="control-bar">
+                    <img id="fullscreen-btn" onclick="toggleControlBarFeatures('fullscreen')"
+                        src="./img/icons/fullscreen.png">
+                    <img id="music-off-btn" onclick="toggleControlBarFeatures('bgMusic')"
+                        src="./img/icons/music-off.png">
+                    <img id="info-btn" onclick="toggleControlBarFeatures('info')" src="./img/icons/info.png">
+                </div>
+                <div id="move-bar" class="d-none">
+                    <div id="left-side">
+                        <img id="move-left-btn" src="./img/icons/arrow-left.png">
+                        <img id="move-right-btn" src="./img/icons/arrow-right.png">
+                    </div>
+                    <div id="right-side">
+                        <img id="jump-btn" src="./img/icons/arrow-top.png">
+                        <img id="throw-bottle-btn" src="./img/icons/bottle.png">
+                    </div>
+                </div>
+                <div id="info-box" class="d-none">
+                    <div id="menue" class="info-section"><span id="general"
+                            onclick="renderInfos('general')">Allgemeines</span> | <span id="control"
+                            onclick="renderInfos('control')">Steuerung</span></div>
+                    <div id="info-content"></div>
+                </div>
+            </div>
+            <div id="start-screen">
+                <img src="img/9_intro_outro_screens/start/startscreen_1.png">
+            </div>
+            <div id="end-screen" class="d-none"></div>
+
+        </div>
+        <div id="info">Klicke auf das&nbsp;<img onclick="toggleControlBarFeatures('info')"
+                src="./img/icons/info.png">&nbsp;Symbol für Spielinformationen</div>
+    </div>
+    <div id="footer"><a href="impressum.html" target="_blank">Impressum</a> | <a href="datenschutz.html" target="_blank">Datenschutz</a></div>
+
+</body>
+
+</html>
