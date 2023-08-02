@@ -58,8 +58,8 @@ function renderControlInfoHtml() {
         <p>Bei Berührung des Displays, werden Steuersymbole eingeblendet.
             Nach einer Inaktivität von mehr als 10 Sekunden werden diese wieder automatisch deaktiviert. Für ein korrektes Spielerlebnis
             wird empfohlen dein Gerät in den Landscape-Modus zu versetzen und im Spiel den Vollbildmodus einzuschalten.
-            To change your auto-rotate setting, follow these steps:Open your device's Settings app.
-            PLease rotate your device for better viewing. Click "ok" for Landscape.
+            Gehen Sie folgendermaßen vor, um die Einstellung für die automatische Drehung zu ändern: Drehen Sie Ihr Gerät für eine bessere Sicht.
+            Klicken Sie auf "ok" für Querformat.
         </p>
     </div>`
 }
