@@ -346,7 +346,7 @@ h2 {
 }
 
 #info {
-    margin-top: 32px;
+   /*margin-top: 32px;*/
     display: flex;
     font-size: 24px;
     justify-content: center;
@@ -399,6 +399,7 @@ a:hover {
     canvas {
         width: 100%;
     }
+   
 }
 
 @media only screen and (max-height: 480px) {
@@ -430,8 +431,6 @@ a:hover {
         max-width: 720px;
     }
 }
-
-
 
 
 @media (device-width: 100vw) and (device-height: 100vh) and (min-width: 1024px) {
