@@ -22,7 +22,7 @@ class World {
     lastBottleThrown = new Date().getTime();
     chickenBackgroundSound = new Audio('./audio/chickens-background-sound.mp3');
     backGroundWindSound = new Audio('./audio/wind.mp3');
-    backGroundWindSoundvolume = 0.5;
+    backGroundWindSoundvolume = 0.3;
     characterHasWon = false;
 
 
@@ -83,9 +83,9 @@ class World {
     }
 
     /**
-     * Collision with enemy.if the character is above the ground, 
+     * Collision with enemy.If the character is above the ground, 
      * then enemy is dead and the number of enemies is increased..
-     * if not, the character is hit and his energy is reduced
+     * If not, the character is hit and his energy is reduced
      */
 
     collisonWithEnemy() {
@@ -176,9 +176,10 @@ class World {
         });
     }
 
-     /**
-      * If endboss is dead, play attackSound in background, show endboss statusbar Energy in %
-      */
+    /**
+     * If endboss is dead, play attackSound in background, show endboss statusbar Energy in %
+     */
+
     collisionBottleWithEndboss() {
         this.throwableObjects.forEach((bottle) => {
             if (this.bottleHitEndboss(bottle)) {
@@ -244,7 +245,7 @@ class World {
     checkAllChickensAreDeath() {
         if (this.isAllChickensDead()) this.chickenBackgroundSound.pause();
     }
- 
+
     /**
      * level back if all chicken are dead
      */
