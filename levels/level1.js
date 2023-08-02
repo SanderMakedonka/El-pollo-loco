@@ -1,5 +1,8 @@
 let level1;
 
+/**
+ The function is designed to create and return a new instance of a "Level" object
+ */
 function getLevel1() {
     return new Level (
         getLevel1Enemies(),

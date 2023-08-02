@@ -16,6 +16,8 @@ let lastTouched = new Date().getTime();
 let infoSection = 'general';
 
 
+
+
 function init() {
     canvas = document.getElementById('canvas');
     level1 = getLevel1();
@@ -23,6 +25,9 @@ function init() {
     setEventListener();
 }
 
+/**
+* start Game
+*/
 
 function startGame() {
     world = new World(canvas, keyboard);
@@ -34,6 +39,9 @@ function startGame() {
     playBackgroundMusic();
 }
 
+/**
+* restart Game
+*/
 
 function restartGame() {
     initRestartGameCssClasses();
@@ -44,12 +52,19 @@ function restartGame() {
     playBackgroundMusic();
 }
 
+/**
+* allows you to add event listeners on any HTML DOM object such as HTML elements, the HTML document,
+ the window object, or other objects that support events
+*/
 
 function setEventListener() {
     setKeyListener();
     setTouchListener();
 }
 
+/**
+ * set Keyboard / key
+ */
 
 function setKeyListener() {
     let events = [
@@ -64,18 +79,25 @@ function setKeyListener() {
     keyListener(events, 'keyup');
 }
 
+/**
+ this function sets up a key event listener that updates 
+ a keyboard object based on the specified keys and event state
+ */
 
 function keyListener(events, eventState) {
     window.addEventListener(eventState, (e) => {
         for (let i = 0; i < events.length; i++) {
             if (e.code === events[i].code) {
                 if (eventState === 'keyup') keyboard[events[i].key] = false;
-                    else keyboard[events[i].key] = true;
+                else keyboard[events[i].key] = true;
             }
         }
     });
 }
 
+/**
+* Move, Left, Space and throw-bottle-Buttons
+*/
 
 function setTouchListener() {
     let events = [
@@ -100,7 +122,9 @@ function touchListener(events, eventState) {
     }
 }
 
-
+/**
+ * Play background Music
+ */
 function playBackgroundMusic() {
     if (!backgroundMusicPaused) {
         currentMusic.addEventListener('ended', function () {
@@ -111,6 +135,9 @@ function playBackgroundMusic() {
     }
 }
 
+/**
+ * Start and stop music
+ */
 
 function startAndStopMusic() {
     if (!backgroundMusicPaused) {
@@ -141,6 +168,10 @@ function initBackgroundMusic() {
     currentMusic = backgroundMusic;
 }
 
+/**
+ * is responsible for initializing the CSS classes 
+ * for the start screen, start game, and move bar elements
+ */
 
 function initStartGameCssClasses() {
     addOrRemoveCSSClass('start-screen', 'add', 'd-none');
@@ -148,6 +179,10 @@ function initStartGameCssClasses() {
     addOrRemoveCSSClass('move-bar', 'add', 'd-none');
 }
 
+/**
+ * is responsible for initializing the CSS classes 
+ * for the restart screen
+ */
 
 function initRestartGameCssClasses() {
     addOrRemoveCSSClass('restart-game', 'add', 'd-none');
@@ -183,8 +218,8 @@ function enterFullscreen(element) {
     addOrRemoveCSSClass('fullscreen-btn', 'add', 'btn-active');
     isFullscreen = true;
     if (element.requestFullscreen) element.requestFullscreen();
-        else if (element.msRequestFullscreen) element.msRequestFullscreen();      // for IE11 (remove June 15, 2022)
-        else if (element.webkitRequestFullscreen) element.webkitRequestFullscreen(); // iOS Safari
+    else if (element.msRequestFullscreen) element.msRequestFullscreen();      // for IE11 (remove June 15, 2022)
+    else if (element.webkitRequestFullscreen) element.webkitRequestFullscreen(); // iOS Safari
 }
 
 
@@ -194,7 +229,7 @@ function exitFullscreen() {
     addOrRemoveCSSClass('fullscreen-btn', 'remove', 'btn-active');
     isFullscreen = false;
     if (document.exitFullscreen) document.exitFullscreen();
-        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
 }
 
 
@@ -265,7 +300,7 @@ function toggleControlBarFeatures(feature) {
 function controlBarfeatureOnOff(id) {
     let element = document.getElementById(id);
     if (element.classList.contains('btn-active')) addOrRemoveCSSClass(id, 'remove', 'btn-active');
-        else addOrRemoveCSSClass(id, 'add', 'btn-active');
+    else addOrRemoveCSSClass(id, 'add', 'btn-active');
 }
 
 
@@ -289,7 +324,7 @@ function gameOver(winOrLose) {
         endSoundPlayed = true;
     }
     if (winOrLose) showEndScreen('<img src="./img/9_intro_outro_screens/game_over/game over.png">');
-        else showEndScreen('<img src="./img/9_intro_outro_screens/game_over/you lost.png">');
+    else showEndScreen('<img src="./img/9_intro_outro_screens/game_over/you lost.png">');
 }
 
 
@@ -306,3 +341,14 @@ function showEndScreen(endScreenPicture) {
 function addOrRemoveCSSClass(htmlId, state, cssClass) {
     document.getElementById(htmlId).classList[state](cssClass);
 }
+
+//Detect Landscape or Portrait mode with JavaScript
+window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
+    const portrait = e.matches;
+
+    if (portrait) {
+        window.alert("PLease rotate your device for better viewing");
+    } else {
+        window.alert('Click "ok" for Landscape.');
+    }
+});
