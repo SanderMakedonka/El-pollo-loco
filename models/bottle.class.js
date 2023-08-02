@@ -10,8 +10,8 @@ class Bottle extends DrawableObject {
             './img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
             './img/6_salsa_bottle/2_salsa_bottle_on_ground.png'
         ));
-        this.x = 200 + Math.random() * 1960;    // Calculates random    
-        this.y = 330 + Math.random() * 60;      // x and y positions  
+        this.x = 200 + Math.random() * 1960;       
+        this.y = 330 + Math.random() * 60;      
     }
 }
 
