@@ -191,12 +191,17 @@ function initRestartGameCssClasses() {
     addOrRemoveCSSClass('start-game', 'remove', 'd-none');
 }
 
-
+/**
+ * Show movebar by touch
+ */
 function showMovebarByTouch() {
     addOrRemoveCSSClass('move-bar', 'remove', 'd-none');
     lastTouched = new Date().getTime();
 }
 
+/**
+ * Remove movebar after Time
+ */
 
 function removeMovebarAfterTime() {
     let currentTime = new Date().getTime();
@@ -232,7 +237,9 @@ function exitFullscreen() {
     else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
 }
 
-
+/**
+ * Show Info bar
+ */
 function showInfos() {
     let state;
     if (!displayInfos) {
@@ -264,6 +271,10 @@ function setInfoSection(section) {
     }
 }
 
+/**
+ * This function is responsible for adding or removing 
+ * CSS classes from HTML elements
+ */
 
 function selectInfoHtml() {
     let content = document.getElementById('info-content');
@@ -278,6 +289,10 @@ function selectInfoHtml() {
     };
 }
 
+/**
+ * 
+ *Get background:Music,fullscreen and info
+ */
 
 function toggleControlBarFeatures(feature) {
     switch (feature) {
@@ -295,7 +310,10 @@ function toggleControlBarFeatures(feature) {
             break;
     }
 }
-
+/**
+ * 
+ Controlbar - add active Button
+ */
 
 function controlBarfeatureOnOff(id) {
     let element = document.getElementById(id);
@@ -303,12 +321,18 @@ function controlBarfeatureOnOff(id) {
     else addOrRemoveCSSClass(id, 'add', 'btn-active');
 }
 
+/**
+ * Set Interval
+ */
 
 function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);
     intervallIds.push(id);
 }
 
+/**
+ * Stop Game
+ */
 
 function stopGame() {
     intervallIds.forEach(clearInterval);
@@ -327,6 +351,10 @@ function gameOver(winOrLose) {
     else showEndScreen('<img src="./img/9_intro_outro_screens/game_over/you lost.png">');
 }
 
+/**
+ * 
+ *  endScreenPicture 
+ */
 
 function showEndScreen(endScreenPicture) {
     document.getElementById('end-screen').innerHTML = endScreenPicture;

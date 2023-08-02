@@ -6,12 +6,15 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
 
-
+    /**
+     * gravitation Function
+     */
     applyGravity() {
         setInterval(() => {
-            if (this.isAboveGround() || this.speedY > 0) {
+            if (this.isAboveGround() || this.speedY > 0) { //Throwable objects should always NOT fall
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
+                // speed minus acceleration
             }
         }, 1000 / 25);
     }
@@ -86,8 +89,8 @@ class MovableObject extends DrawableObject {
 
 
     isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit; 
-        timepassed = timepassed / 1000; 
+        let timepassed = new Date().getTime() - this.lastHit; //difference in ms
+        timepassed = timepassed / 1000; // difference in s
         return timepassed < 1;
     }
 
@@ -111,7 +114,7 @@ class MovableObject extends DrawableObject {
 
 
     moveRight() {
-        this.x += this.speed;
+        this.x += this.speed; //x ++
     }
 
 

@@ -89,12 +89,14 @@ class Character extends MovableObject {
         this.animate();
     }
 
-
+    /** Move Character Pepe */
     animate() {
         setStoppableInterval(() => this.setMovements(), 1000 / 60);
         setStoppableInterval(() => this.setAnimations(), 100);
     }
 
+    /**
+     * set Move */
 
     setMovements() {
         this.walkingSound.pause();
@@ -113,12 +115,19 @@ class Character extends MovableObject {
             else this.isSleeping();
     }
 
-
+    /**
+     * 
+     * Press right key
+     */
     isPressedKeyRight() {
         return this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX;
     }
 
-
+    /**
+     * 
+     * Press key left 
+     */
+    
     isPressedKeyLeft() {
         return this.world.keyboard.LEFT && this.x > 0;
     }
@@ -136,7 +145,9 @@ class Character extends MovableObject {
         this.playWalkingSound();
     }
 
-
+    /**
+     * Only for movable Objects
+     */
     jump() {
         this.endedSleeping();
         super.jump();

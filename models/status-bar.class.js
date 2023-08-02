@@ -17,13 +17,17 @@ class StatusBar extends DrawableObject {
         this.img = this.imageCache[path];
     }
 
-
+    /**
+     * 
+     * returns an image index based on the value of the percentage
+     * property 
+     */
     resolveImageIndex() {
         if (this.percentage > 99) return 5;
-            else if (this.percentage > 79) return 4;
-            else if (this.percentage > 59) return 3;
-            else if (this.percentage > 39) return 2;
-            else if (this.percentage > 19) return 1;
-                else return 0;
+        else if (this.percentage > 79) return 4;
+        else if (this.percentage > 59) return 3;
+        else if (this.percentage > 39) return 2;
+        else if (this.percentage > 19) return 1;
+        else return 0;
     }
 }

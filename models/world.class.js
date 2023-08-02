@@ -26,6 +26,10 @@ class World {
     characterHasWon = false;
 
 
+    /**
+     * object orientation. Into this function,
+     *  all subclasses,functions and Keyboard will be integrated
+     */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -37,12 +41,19 @@ class World {
         this.soundsCalibration();
     }
 
-
+    /**
+     * Object Orientation.This function set character in world class. 
+     */
     setWorld() {
         this.character.world = this;
     }
 
 
+    /**
+     * This function check collisions,check movable objects,check endboss character,
+     *  repeat clouds,check or all chickens are dead, check if games end and 
+     * remove ovebar within 100ms
+     */
     run() {
         setStoppableInterval(() => {
             this.checkCollisions();
@@ -55,6 +66,12 @@ class World {
         }, 100);
     }
 
+    /**
+     * This funcion check collisions between enemy with endboss,
+     * pick up coins and bottle and
+     * check coollisions between Bottle with Chicken/Endboss
+     * 
+     */
 
     checkCollisions() {
         this.collisonWithEnemy();
@@ -65,6 +82,11 @@ class World {
         this.collisionBottleWithEndboss();
     }
 
+    /**
+     * Collision with enemy.if the character is above the ground, 
+     * then enemy is dead and the number of enemies is increased..
+     * if not, the character is hit and his energy is reduced
+     */
 
     collisonWithEnemy() {
         this.level.enemies.forEach((enemy) => {
@@ -81,7 +103,10 @@ class World {
         });
     }
 
-
+    /**
+     * Collision with endboss.When the character is injured by the Endboss
+     *  his life energy is reduced
+     */
     collisionWithEndboss() {
         if (this.characterCollisionWithEndboss()) {
             this.character.hit();
@@ -92,7 +117,7 @@ class World {
 
     characterCollisionWithEnemy(enemy) {
         return this.character.isColliding(enemy) && enemy instanceof Chicken
-        && !enemy.isDead() && !this.characterHasWon;
+            && !enemy.isDead() && !this.characterHasWon;
     }
 
 
@@ -100,6 +125,9 @@ class World {
         return this.character.isColliding(this.endBoss) && !this.endBoss.isDead() && !this.characterHasWon
     }
 
+    /**
+     *  Coins pick up
+     */
 
     coinPickUp() {
         this.level.coins.forEach((coin) => {
@@ -112,6 +140,9 @@ class World {
         });
     }
 
+    /**
+    * Bottles pick up
+    */
 
     bottlePickUp() {
         this.level.bottles.forEach((bottle) => {
@@ -126,6 +157,11 @@ class World {
         });
     }
 
+    /**
+     * this function has 2 actions
+     * if chicken is dead, then the number of chicken will be increased,
+     * and 2. play Kill Sound in background
+     */
 
     collisionBottleWithChicken() {
         this.throwableObjects.forEach((bottle) => {
@@ -140,7 +176,9 @@ class World {
         });
     }
 
-
+     /**
+      * If endboss is dead, play attackSound in background, show endboss statusbar Energy in %
+      */
     collisionBottleWithEndboss() {
         this.throwableObjects.forEach((bottle) => {
             if (this.bottleHitEndboss(bottle)) {
@@ -190,18 +228,26 @@ class World {
         }
     }
 
-
+    /**
+     * repeat Clouds
+     */
     repeatClouds() {
         this.level.clouds.forEach((cloud) => {
             if (cloud.x < -510) cloud.x = 2880;
         });
     }
 
+    /**
+     * check if all chicken are dead
+     */
 
     checkAllChickensAreDeath() {
         if (this.isAllChickensDead()) this.chickenBackgroundSound.pause();
     }
-
+ 
+    /**
+     * level back if all chicken are dead
+     */
 
     isAllChickensDead() {
         return this.killedChickens === this.level.enemies.length - 1;
@@ -213,7 +259,7 @@ class World {
             document.getElementById('overlay').removeEventListener('touchstart', showMovebarByTouch);
             this.stopAllSounds();
             if (this.character.isDead()) this.characterIsDead();
-                else this.endbossIsDead();
+            else this.endbossIsDead();
         }
     }
 
@@ -222,37 +268,52 @@ class World {
         return this.character.isDead() || this.endBoss.isDead();
     }
 
+    /**
+     * 1.each time this funk repeats, shift left y=0
+     * 2.add bottle
+     * 3.back
+     * 4.forwards
+     * 5.push everything back to the right because the games will crash
     
+     */
     draw() {
         let self = this;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.translate(this.cameraX, 0);
+        this.ctx.translate(this.cameraX, 0); //1.
         this.addObjectsToMap(this.level.backgroundObjects);
         this.noneFixedObjects();
-        this.addObjectsToMap(this.throwableObjects);
-        this.ctx.translate(-this.cameraX, 0);
+        this.addObjectsToMap(this.throwableObjects); //2.
+        this.ctx.translate(-this.cameraX, 0); //3.
         this.fixedObjects();
-        this.ctx.translate(this.cameraX, 0);
-        this.addToMap(this.character);
+        this.ctx.translate(this.cameraX, 0);//4.
+        this.addToMap(this.character); //5.
         this.ctx.translate(-this.cameraX, 0);
         requestAnimationFrame(function () {
             self.draw();
         })
     }
 
-
+    /**
+     * 
+     * objects add to Map
+     */
     addObjectsToMap(objects) {
         objects.forEach(obj => {
             this.addToMap(obj);
         });
     }
 
+    /**
+     * 
+     * googeln canvas mirror picture add to map
+     * this.flipImage(mo); shortened Image below
+     */
 
     addToMap(mo) {
         if (mo.otherDirection) this.flipImage(mo);
         mo.draw(this.ctx);
         //mo.drawFrame(this.ctx);  // Paints a frame around the graphics
-        if (mo.otherDirection) this.flipImageBack(mo);
+        if (mo.otherDirection) this.flipImageBack(mo); //end
     }
 
 
@@ -269,6 +330,11 @@ class World {
         this.ctx.restore();
     }
 
+    /**
+     * this function is responsible for adding clouds, coins, bottles,
+     *  and enemies to a map by calling the "addObjectsToMap"
+     *  method with the respective arrays of objects.
+     */
 
     noneFixedObjects() {
         this.addObjectsToMap(this.level.clouds);
@@ -277,6 +343,11 @@ class World {
         this.addObjectsToMap(this.level.enemies);
     }
 
+    /**
+     * this function is responsible for adding Healthy Statusbar, 
+     * Bottle Statusbar, coins Statusbar, to check endBoss Statusbar
+     * 
+     */
 
     fixedObjects() {
         this.addToMap(this.healthStatusBar);
@@ -287,6 +358,15 @@ class World {
         this.addCounter('coin');
     }
 
+    /**
+     * 
+     * First, the function declares two variables, "type" and "maxValue", 
+     * without assigning any initial values to them.
+     * Second, checks if the value of the "counter" parameter is equal to the string 'bottle'. 
+     * If it is, the function assigns the value of "this.bottleStatusBar" to the "type" variable 
+     * and assigns the value 5 to the "maxValue" variable.
+      This suggests that there is a bottle status bar and its maximum value is set to 5.
+     */
 
     addCounter(counter) {
         let type;
@@ -333,7 +413,9 @@ class World {
         currentMusic.pause();
     }
 
-
+    /**
+     *  Music Volume = 0.5 and windSound.volume = 0.3
+     */
     soundsCalibration() {
         currentMusic.volume = 0.5;
         this.backGroundWindSound.volume = 0.3;
@@ -348,7 +430,10 @@ class World {
         sound.play();
     }
 
-
+    /**
+     * Show Endboss statusbar and when endboss is dead add new Image and 
+     * new Statusbar
+     */
     showEndbossStatusBar() {
         if (!this.endBoss.isDead()) {
             this.endBossStatusBar = new EndbossStatusBar();
@@ -356,6 +441,9 @@ class World {
         }
     }
 
+    /**
+     * Check Endboss statusbar
+     */
 
     checkEndBossStatusBar() {
         if (this.endBossStatusBar) {
@@ -364,7 +452,9 @@ class World {
         }
     }
 
-
+    /**
+     * Pepe is dead
+     */
     characterIsDead() {
         if (!gameIsOver) {
             gameIsOver = true;
@@ -374,7 +464,9 @@ class World {
         }
     }
 
-
+    /**
+     * Endboss is dead
+     */
     endbossIsDead() {
         if (!gameIsOver) {
             gameIsOver = true;

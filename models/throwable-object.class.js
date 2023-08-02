@@ -33,7 +33,9 @@ class ThrowableObject extends MovableObject {
         this.throwDirection = throwDirection;
     }
 
-
+    /**
+     * throw Botle, apply Gravity, animate, add speed and repaet that(setInterval)
+     */
     throw() {
         this.throwBootleSound.play();
         this.speedY = 30;
@@ -41,11 +43,15 @@ class ThrowableObject extends MovableObject {
         this.animate();
         setStoppableInterval(() => {
             if (this.throwDirection) this.x -= 10;
-                else this.x += 10;
+            else this.x += 10;
         }, 25);
     }
 
-
+    /**
+     * This interval executes a callback function every 100 milliseconds.
+     * has two main actions:determine the animation to be played and 
+     *  bottle splash effect
+     */
     animate() {
         setStoppableInterval(() => {
             this.playAnimation(this.IMAGES_ROTATION);
@@ -64,12 +70,19 @@ class ThrowableObject extends MovableObject {
         }
     }
 
-
+    /**
+     * 
+     * Function hit the bottle
+     */
     hasHitBottle() {
         return this.bottleHitTheGround() || this.enemyKill || this.endBossIsHurt;
     }
 
-    
+    /**
+    * 
+    * Function bottle hit the ground
+    */
+
     bottleHitTheGround() {
         if (this.y > 300 && this.y < 390) {
             return true;
