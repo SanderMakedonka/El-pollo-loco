@@ -65,7 +65,9 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
-
+    /**
+     * Animate the endboss of the game
+    */
     animate() {
         setStoppableInterval(() => {
             this.checkMovingStart();
@@ -73,11 +75,14 @@ class Endboss extends MovableObject {
 
 
         setStoppableInterval(() => {
-           this.setAnimations();
+            this.setAnimations();
         }, 200);
     }
 
-
+    /**
+     * check moving start and
+     * change dierection
+     */
     checkMovingStart() {
         if (this.ifMovePossible()) {
             this.moving();
@@ -85,49 +90,69 @@ class Endboss extends MovableObject {
         }
     }
 
-
+    /**
+     * plays animations for alert, hurt, and death states
+     * based on the current state of the object.
+     */
     setAnimations() {
         if (this.ifMovePossible()) this.playMovingAnimations();
-            else this.playAnimation(this.IMAGES_ALERT);
+        else this.playAnimation(this.IMAGES_ALERT);
         if (this.isHurt()) this.playIsHurtAnimation();
         if (this.isDead()) this.playDieAnimation();
     }
 
-
+    /**
+     * Change move direction
+     */
     changeMoveDirection() {
         if (this.x < 1) this.otherDirection = true;
-        if (this.x > 2680)  this.otherDirection = false;
+        if (this.x > 2680) this.otherDirection = false;
     }
 
-
+    /**
+     * Move right and left
+     */
     moving() {
         if (this.otherDirection === true) this.moveRight();
-            else this.moveLeft();
+        else this.moveLeft();
     }
 
-
+    /**
+     * play Attack- and Walking Animation
+     */
     playMovingAnimations() {
         if (this.isInAttackingDistance()) this.playAttackAnimation();
-            else this.playAnimation(this.IMAGES_WALKING);
+        else this.playAnimation(this.IMAGES_WALKING);
     }
 
-    
+    /**
+     * check or move is Possible, when
+     * character is not dead
+     */
     ifMovePossible() {
         return this.seeCharacter && !this.isDead();
     }
 
-
+    /**
+     * Character is attacked
+     */
     isInAttackingDistance() {
         return this.x < world.character.x + 100 && this.x > world.character.x - 100
     }
 
-
+    /**
+     * Play attacked Animation
+     * attack sound
+     */
     playAttackAnimation() {
         this.attackSound.play();
         this.playAnimation(this.IMAGES_ATTACK);
     }
 
-
+    /**
+     * Play die Animation
+     * play die- and grill sound
+     */
     playDieAnimation() {
         this.seeCharacter = false;
         this.playAnimation(this.IMAGES_DEAD);
@@ -138,7 +163,9 @@ class Endboss extends MovableObject {
         }
     }
 
-
+    /**
+     * Play is hurt Animation
+     */
     playIsHurtAnimation() {
         this.playAnimation(this.IMAGES_HURT);
         this.seeCharacter = true;

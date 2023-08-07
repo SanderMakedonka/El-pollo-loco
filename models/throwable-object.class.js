@@ -33,8 +33,8 @@ class ThrowableObject extends MovableObject {
         this.throwDirection = throwDirection;
     }
 
-    /**
-     * throw Botle, apply Gravity, animate, add speed and repaet that(setInterval)
+     /**
+     * Throw a bottle through the character
      */
     throw() {
         this.throwBootleSound.play();
@@ -48,9 +48,9 @@ class ThrowableObject extends MovableObject {
     }
 
     /**
-     * This interval executes a callback function every 100 milliseconds.
-     * has two main actions:determine the animation to be played and 
-     *  bottle splash effect
+     * callback function every 100 milliseconds,
+     * play the rotate animation and 
+     * bottle splash effect
      */
     animate() {
         setStoppableInterval(() => {
@@ -59,7 +59,11 @@ class ThrowableObject extends MovableObject {
         }, 100);
     }
 
-
+    /**
+     * Enemy is dead or endBoss is demaged,then
+     * load splash bottle animation, and
+     * play brocken bottle sound
+     */
     bottleSplash() {
         if (this.hasHitBottle()) {
             this.playAnimation(this.IMAGES_SPLASH);
@@ -70,19 +74,17 @@ class ThrowableObject extends MovableObject {
         }
     }
 
-    /**
-     * 
-     * Function hit the bottle
+     /**
+     * Bottle hit the ground, then
+     * enemy is dead or endBoss is demaged
      */
     hasHitBottle() {
         return this.bottleHitTheGround() || this.enemyKill || this.endBossIsHurt;
     }
 
-    /**
-    * 
-    * Function bottle hit the ground
-    */
-
+     /**
+     *Bottle hit the ground
+     */
     bottleHitTheGround() {
         if (this.y > 300 && this.y < 390) {
             return true;

@@ -13,8 +13,12 @@ class DrawableObject {
         right: 0
     };
 
-    /**load img */
-
+    
+    /**
+     * Create a new image object
+     * 
+     * @param {string} path -  The path of a image
+     */
     loadImage(path) {
         this.img = new Image(path);
         this.img.src = path;
@@ -22,16 +26,16 @@ class DrawableObject {
     }
 
     /**
+     * Draw image to the canvas 
      * 
-     * draw Image in Context
+     * @param {object} ctx - The canvas in 2d context 
      */
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
     /**
-     * 
-     * draw Frame in ctx 
+     * draw Frame in context
      */
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Chicken ||
@@ -44,7 +48,11 @@ class DrawableObject {
         }
     }
 
-
+    /**
+     * Load all images of an array to another array 
+     * 
+     * @param {array} arr - Array of images 
+     */
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();

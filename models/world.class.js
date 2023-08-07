@@ -74,7 +74,10 @@ class World {
     }
 
     /**
-     * Character is colliding with enemy and updates Character's health StatusBar
+     * Character killes the enemy then
+     * play kills dound. When nicht,
+     * character get demaged and 
+     * health stauts bar gets set
      */
     collisonWithEnemy() {
         this.level.enemies.forEach((enemy) => {
@@ -92,8 +95,9 @@ class World {
     }
 
     /**
-     * Character is colliding with endBoss.If the character is hited
-     *  his health StatusBar,energy is reduced
+     * Character is colliding with endBoss.
+     * character is demaged, then
+     * health StatusBar/his energy is reduced
      */
     collisionWithEndboss() {
         if (this.characterCollisionWithEndboss()) {
@@ -132,7 +136,8 @@ class World {
     }
 
     /**
-    * Character collides with a bottle. If the character hasn't already picked up 5 bottles,
+    * Character collides with a bottle. 
+    * the character hasn't already picked up 5 bottles, then
     * removes the picked bottle from the array, and updates a bottle status bar accordingly.
     */
     bottlePickUp() {
@@ -149,7 +154,9 @@ class World {
     }
 
     /**
-     * The bottle is colliding with the enemy, enemy is hit and dead
+     * The bottle is colliding with the enemy,
+     * enemy is dead, then
+     * play kill sound
      */
     collisionBottleWithChicken() {
         this.throwableObjects.forEach((bottle) => {
@@ -165,8 +172,10 @@ class World {
     }
 
     /**
-     * The bottle is colliding with the endBoss and
-     * if endboss is hit, play attackSound in background,show endboss Statusbar Energy in %
+     * The bottle is colliding with the endBoss
+     * endboss is demaged, 
+     * play attackSound in background,
+     * stauts bar gets set
      */
     collisionBottleWithEndboss() {
         this.throwableObjects.forEach((bottle) => {
@@ -182,15 +191,17 @@ class World {
     }
 
     /**
-     *Enemy is colliding with the bottle, the enemy is not dead
-     *and the enemy is not an instance of the Endboss class
+     *Enemy is colliding with the bottle,
+     * the enemy is not dead 
+     * the enemy is not an instance of the Endboss class
      */
     bottleHitChicken(enemy, bottle) {
         return enemy.isColliding(bottle) && !enemy.isDead() && !(enemy instanceof Endboss);
     }
 
     /**
-     *The end boss is colliding with the bottle and the end boss is not dead.
+     *The end boss is colliding with the bottle
+     * the end boss is not dead.
      */
     bottleHitEndboss(bottle) {
         return this.endBoss.isColliding(bottle) && !this.endBoss.isDead();
@@ -198,7 +209,7 @@ class World {
 
     /**
      * Check throw Objects
-     * and maximum of one bottle can be thrown per second
+     * maximum of one bottle can be thrown per second
      */
     checkThrowObjects() {
         if (this.keyboard.D) {
@@ -433,8 +444,8 @@ class World {
     }
 
     /**
-     * Show Endboss statusbar and when endboss is dead add new Image and 
-     * new Statusbar
+     * Show Endboss statusbar,when 
+     * endboss is dead add new Image and new Statusbar
      */
     showEndbossStatusBar() {
         if (!this.endBoss.isDead()) {
@@ -454,7 +465,8 @@ class World {
     }
 
     /**
-     * Pepe is dead
+     * Chracter is dead, then
+     * Game is over
      */
     characterIsDead() {
         if (!gameIsOver) {
@@ -466,7 +478,8 @@ class World {
     }
 
     /**
-     * Endboss is dead
+     * Character is winner, then
+     * endBoss is dead/grilled 
      */
     endbossIsDead() {
         if (!gameIsOver) {

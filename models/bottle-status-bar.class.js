@@ -12,13 +12,17 @@ class BottleStatusBar extends DrawableObject {
         super().loadImage('./img/7_statusbars/3_icons/icon_salsa_bottle.png');
     }
 
-    /**set Percentage von 0 bis 5 */
+     /**
+     * set the percentage for the status bar 
+     * 
+     * @param {number} percentage - precentage for the status bar
+     */
     setPercentage(percentage) {
         this.percentage = percentage; // => 0 ... 5
         this.setAmount(this.percentage)
     }
 
-
+    
     setAmount(percent) {
         let amount;
         switch (percent) {

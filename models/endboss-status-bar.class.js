@@ -10,7 +10,12 @@ class EndbossStatusBar extends StatusBar {
         './img/7_statusbars/1_statusbar/2_statusbar_health/orange/100.png'
     ];
 
-
+    /**
+     * load Images and
+     * set the percentage for the status bar 
+     * 
+     * @param {number} percentage - precentage for the status bar
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES);

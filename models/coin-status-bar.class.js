@@ -12,7 +12,9 @@ class CoinStatusBar extends BottleStatusBar {
         super().loadImage('./img/7_statusbars/3_icons/icon_coin.png');
     }
 
-
+    /**
+     *Set coins statusBar in percent
+     */
     setAmount(percent) {
         this.amount = percent;
     }

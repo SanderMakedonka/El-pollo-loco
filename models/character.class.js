@@ -89,15 +89,17 @@ class Character extends MovableObject {
         this.animate();
     }
 
-    /** Move Character Pepe */
+    /**
+     * Animate the Character of the game 
+     */
     animate() {
         setStoppableInterval(() => this.setMovements(), 1000 / 60);
         setStoppableInterval(() => this.setAnimations(), 100);
     }
 
     /**
-     * set Move */
-
+     * move the Character: right,left and jump
+     */
     setMovements() {
         this.walkingSound.pause();
         if (this.isPressedKeyRight()) this.moving('right');
@@ -106,7 +108,10 @@ class Character extends MovableObject {
         this.world.cameraX = -this.x + 100;
     }
 
-
+    /**
+     * Set Animations or
+     * Play dead-,die-,hurt-,above ground-,jump- and sleeping Animation
+     */
     setAnimations() {
         if (this.isDead()) this.playDieAnimation();
             else if (this.isHurt()) this.playAnimation(this.IMAGES_HURT);
@@ -115,8 +120,7 @@ class Character extends MovableObject {
             else this.isSleeping();
     }
 
-    /**
-     * 
+    /** 
      * Press right key
      */
     isPressedKeyRight() {
@@ -124,20 +128,23 @@ class Character extends MovableObject {
     }
 
     /**
-     * 
-     * Press key left 
+     * Press left key
      */
-    
     isPressedKeyLeft() {
         return this.world.keyboard.LEFT && this.x > 0;
     }
 
-
+    /**
+     * Press space key
+     */
     isPressedKeySpace() {
         return world.keyboard.SPACE && !this.isAboveGround();
     }
 
-
+    /**
+     * checks or character is sleeping and
+     * if not play walking sound
+     */
     moving(direction) {
         if (direction === 'right' ? this.moveRight() : this.moveLeft());
         if (direction === 'right' ? this.otherDirection = false : this.otherDirection = true);
@@ -153,12 +160,18 @@ class Character extends MovableObject {
         super.jump();
     }
 
-
+    /**
+     * play walking sound if
+     * character is not above Groung
+     */
     playWalkingSound() {
         if (!this.isAboveGround()) this.walkingSound.play(); 
     }
 
-
+    /**
+     * Character is sleeping if he is not hurt or dead
+     * play snore sound
+     */
     isSleeping() {
         let currentTime = new Date().getTime();
         if ((currentTime - this.pausedTime) > 5000) {
@@ -169,13 +182,19 @@ class Character extends MovableObject {
         } else this.playAnimation(this.IMAGES_IDLE);
     }
 
-
+    /**
+     * sleppeng ended 
+     * snore sound is paused
+     */
     endedSleeping() {
         this.pausedTime = new Date().getTime();
         this.snoreSound.pause();
     }
 
-
+    /**
+     * play dead Animation
+     * play die sound
+     */
     playDieAnimation() {
         this.playAnimation(this.IMAGES_DEAD);
         if (!this.toDieSoundPlayed) {

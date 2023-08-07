@@ -1,7 +1,7 @@
 let level1;
 
 /**
- The function is designed to create and return a new instance of a "Level" object
+ *create and return a new instance of a "Level" object
  */
 function getLevel1() {
     return new Level (
@@ -13,7 +13,9 @@ function getLevel1() {
     );
 }
 
-
+/**
+ *create and return "Level" of enemies
+ */
 function getLevel1Enemies() {
     return [
         new Chicken(),
@@ -32,7 +34,9 @@ function getLevel1Enemies() {
     ];
 }
 
-
+/**
+ *create and return "Level" of Clouds
+ */
 function getLevel1Clouds() {
     return [
         new Cloud(),
@@ -48,7 +52,9 @@ function getLevel1Clouds() {
     ];
 }
 
-
+/**
+ *create and return "Level" of Background Objects
+ */
 function getLevel1BackgroundObjects() {
     return [
         new BackgroundObject('img/5_background/layers/air.png', -719),
@@ -76,7 +82,9 @@ function getLevel1BackgroundObjects() {
     ];
 }
 
-
+/**
+ *create and return "Level" of Coins
+ */
 function getLevel1Coins() {
     return [
         new Coin(),
@@ -97,7 +105,9 @@ function getLevel1Coins() {
     ];
 }
 
-
+/**
+ *create and return "Level" of Bottles
+ */
 function getLevel1Bottles() {
     return [
         new Bottle(),
