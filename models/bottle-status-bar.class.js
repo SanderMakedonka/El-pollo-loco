@@ -7,7 +7,14 @@ class BottleStatusBar extends DrawableObject {
     counterX = 355;
     counterY = 45;
 
-
+    /**
+     * constructor is defined inside a class
+     * call the superclass constructor using super(), passing up the name parameter
+     * create a new Object 
+     * bind this to the new object, so you can refer to this in your constructor code
+     * 
+     * This function load Bottle's Image path
+     */
     constructor() {
         super().loadImage('./img/7_statusbars/3_icons/icon_salsa_bottle.png');
     }
@@ -22,7 +29,11 @@ class BottleStatusBar extends DrawableObject {
         this.setAmount(this.percentage)
     }
 
-    
+    /**
+     * set the Amount for the status bar 
+     * 
+     * @param {number} percent 
+     */
     setAmount(percent) {
         let amount;
         switch (percent) {

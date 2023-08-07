@@ -109,8 +109,8 @@ class Character extends MovableObject {
     }
 
     /**
-     * Set Animations or
-     * Play dead-,die-,hurt-,above ground-,jump- and sleeping Animation
+     * Set Animations:
+     * play dead-,die-,hurt-,above ground-,jump- and sleeping Animation
      */
     setAnimations() {
         if (this.isDead()) this.playDieAnimation();

@@ -21,6 +21,7 @@ class StatusBar extends DrawableObject {
 
     /**
      * calculates the image index based on the given percentage 
+     * In certain percentage it returns a number
      */
     resolveImageIndex() {
         if (this.percentage > 99) return 5;

@@ -4,7 +4,6 @@ class Bottle extends DrawableObject {
     y = 360;
     picBottleSound = new Audio('audio/pick-bottle.wav');
 
-
     constructor() {
         super().loadImage(this.selectRandomPicture(
             './img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
