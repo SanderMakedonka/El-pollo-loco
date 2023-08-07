@@ -15,9 +15,9 @@ let displayInfos = false;
 let lastTouched = new Date().getTime();
 let infoSection = 'general';
 
-
-
-
+/**
+ * Draw the start screen an load the mobile control
+ */
 function init() {
     canvas = document.getElementById('canvas');
     level1 = getLevel1();
@@ -26,9 +26,8 @@ function init() {
 }
 
 /**
-* start Game
-*/
-
+ * This function start the game
+ */
 function startGame() {
     world = new World(canvas, keyboard);
     gameIsOver = false;
@@ -40,9 +39,8 @@ function startGame() {
 }
 
 /**
-* restart Game
+* restart the Game
 */
-
 function restartGame() {
     initRestartGameCssClasses();
     level1 = getLevel1();
@@ -53,19 +51,16 @@ function restartGame() {
 }
 
 /**
-* allows you to add event listeners on any HTML DOM object such as HTML elements, the HTML document,
- the window object, or other objects that support events
-*/
-
+ * Keyboard integration and Key's id
+ */
 function setEventListener() {
     setKeyListener();
     setTouchListener();
 }
 
 /**
- * set Keyboard / key
+ * set Keys in the Keyboard 
  */
-
 function setKeyListener() {
     let events = [
         { 'code': 'ArrowRight', 'key': 'RIGHT' },
@@ -80,10 +75,8 @@ function setKeyListener() {
 }
 
 /**
- this function sets up a key event listener that updates 
- a keyboard object based on the specified keys and event state
+ * Checks whether a specific key was pressed
  */
-
 function keyListener(events, eventState) {
     window.addEventListener(eventState, (e) => {
         for (let i = 0; i < events.length; i++) {
@@ -96,9 +89,8 @@ function keyListener(events, eventState) {
 }
 
 /**
-* Move, Left, Space and throw-bottle-Buttons
+* Move, Left, Space and throw-bottle-Buttons 
 */
-
 function setTouchListener() {
     let events = [
         { 'id': 'move-right-btn', 'key': 'RIGHT' },
@@ -110,7 +102,9 @@ function setTouchListener() {
     touchListener(events, 'touchend');
 }
 
-
+/**
+ * handle touch events and update the keyboard object
+ */
 function touchListener(events, eventState) {
     let event;
     for (let i = 0; i < events.length; i++) {
@@ -138,7 +132,6 @@ function playBackgroundMusic() {
 /**
  * Start and stop music
  */
-
 function startAndStopMusic() {
     if (!backgroundMusicPaused) {
         backgroundMusicPaused = true
@@ -149,19 +142,25 @@ function startAndStopMusic() {
     }
 }
 
-
+/**
+ * Start the music
+ */
 function startMusic() {
     backgroundMusicPaused = false;
     playBackgroundMusic();
 }
 
-
+/**
+ * Stop the Music
+ */
 function stopMusic() {
     backgroundMusicPaused = true;
     currentMusic.pause();
 }
 
-
+/**
+ * This function initializing and starting background Music
+ */
 function initBackgroundMusic() {
     stopMusic();
     currentMusic.currentTime = 0;
@@ -169,10 +168,9 @@ function initBackgroundMusic() {
 }
 
 /**
- * is responsible for initializing the CSS classes 
- * for the start screen, start game, and move bar elements
+ *  This function is responsible for add and remove
+ *  start screen, start game, and move bar elements
  */
-
 function initStartGameCssClasses() {
     addOrRemoveCSSClass('start-screen', 'add', 'd-none');
     addOrRemoveCSSClass('start-game', 'add', 'd-none');
@@ -180,10 +178,8 @@ function initStartGameCssClasses() {
 }
 
 /**
- * is responsible for initializing the CSS classes 
- * for the restart screen
+ * Add end-screen and restart the game 
  */
-
 function initRestartGameCssClasses() {
     addOrRemoveCSSClass('restart-game', 'add', 'd-none');
     addOrRemoveCSSClass('end-screen', 'add', 'd-none');
@@ -200,15 +196,16 @@ function showMovebarByTouch() {
 }
 
 /**
- * Remove movebar after Time
+ * Remove movebar after 10s
  */
-
 function removeMovebarAfterTime() {
     let currentTime = new Date().getTime();
     if (currentTime - lastTouched > 10000) addOrRemoveCSSClass('move-bar', "add", 'd-none');
 }
 
-
+/**
+ * This function is to add or exit full-screen
+ */
 function fullscreen() {
     if (!isFullscreen) {
         let fullscreen = document.getElementById('fullscreen');
@@ -216,7 +213,9 @@ function fullscreen() {
     } else exitFullscreen();
 }
 
-
+/**
+ * This function is to add full-screen
+ */
 function enterFullscreen(element) {
     addOrRemoveCSSClass('header', 'add', 'd-none');
     addOrRemoveCSSClass('info', 'add', 'd-none');
@@ -227,7 +226,9 @@ function enterFullscreen(element) {
     else if (element.webkitRequestFullscreen) element.webkitRequestFullscreen(); // iOS Safari
 }
 
-
+/**
+ * This function is to exit full-screen
+ */
 function exitFullscreen() {
     addOrRemoveCSSClass('header', 'remove', 'd-none');
     addOrRemoveCSSClass('info', 'remove', 'd-none');
@@ -253,13 +254,17 @@ function showInfos() {
     renderInfos();
 }
 
-
+/**
+ * This function is to render Info bar
+ */
 function renderInfos(section) {
     setInfoSection(section);
     selectInfoHtml();
 }
 
-
+/**
+ * This function is to set Info bar
+ */
 function setInfoSection(section) {
     switch (section) {
         case 'general':
@@ -272,10 +277,8 @@ function setInfoSection(section) {
 }
 
 /**
- * This function is responsible for adding or removing 
- * CSS classes from HTML elements
+ * This function add or remove info-section:Allgemeines/Steuerung
  */
-
 function selectInfoHtml() {
     let content = document.getElementById('info-content');
     if (infoSection === 'general') {
@@ -290,10 +293,9 @@ function selectInfoHtml() {
 }
 
 /**
- * 
- *Get background:Music,fullscreen and info
+ * This function managing different features(background-music,fullscreen and info) 
+ * in a control bar interface
  */
-
 function toggleControlBarFeatures(feature) {
     switch (feature) {
         case 'bgMusic':
@@ -310,11 +312,10 @@ function toggleControlBarFeatures(feature) {
             break;
     }
 }
-/**
- * 
- Controlbar - add active Button
- */
 
+/**
+ * This function managing ON and OFF features in Controllbar
+ */
 function controlBarfeatureOnOff(id) {
     let element = document.getElementById(id);
     if (element.classList.contains('btn-active')) addOrRemoveCSSClass(id, 'remove', 'btn-active');
@@ -324,7 +325,6 @@ function controlBarfeatureOnOff(id) {
 /**
  * Set Interval
  */
-
 function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);
     intervallIds.push(id);
@@ -333,13 +333,14 @@ function setStoppableInterval(fn, time) {
 /**
  * Stop Game
  */
-
 function stopGame() {
     intervallIds.forEach(clearInterval);
 
 }
 
-
+/**
+ * Game Over
+ */
 function gameOver(winOrLose) {
     let endSound;
     winOrLose ? endSound = youWinSound : endSound = youLoseSound;
@@ -352,10 +353,8 @@ function gameOver(winOrLose) {
 }
 
 /**
- * 
- *  endScreenPicture 
+ * Show EndScreen Picture and stop the Game
  */
-
 function showEndScreen(endScreenPicture) {
     document.getElementById('end-screen').innerHTML = endScreenPicture;
     addOrRemoveCSSClass('restart-game', 'remove', 'd-none');
@@ -364,33 +363,24 @@ function showEndScreen(endScreenPicture) {
     stopGame();
 }
 
-
-// Adds or removes CSS classes
+/**
+ * Add or remove CSS Classes
+ */
 function addOrRemoveCSSClass(htmlId, state, cssClass) {
     document.getElementById(htmlId).classList[state](cssClass);
 }
 
-/*
-//Detect Landscape or Portrait mode with JavaScript
+/**
+ * Detect Landscape or Portrait mode with JavaScript
+ */
 window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
     const portrait = e.matches;
 
     if (portrait) {
-        window.alert("PLease rotate your device for better viewing");
-        
-    } else {
-        window.alert('Click "ok" for Landscape.');
-    }
-}); */
-
-window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
-    const portrait = e.matches;
-
-    if (portrait) {
-        document.body.style.backgroundColor = "black"; // Change background color to black
+        document.body.style.backgroundColor = "black"; 
         window.alert("Please rotate your device for better viewing");
     } else {
-        document.body.style.backgroundColor = "white"; // Change background color back to white
+        document.body.style.backgroundColor = "white";
         window.alert('Click "OK" for Landscape.');
     }
 }); 
