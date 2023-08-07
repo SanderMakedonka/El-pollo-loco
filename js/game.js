@@ -370,13 +370,27 @@ function addOrRemoveCSSClass(htmlId, state, cssClass) {
     document.getElementById(htmlId).classList[state](cssClass);
 }
 
+/*
 //Detect Landscape or Portrait mode with JavaScript
 window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
     const portrait = e.matches;
 
     if (portrait) {
         window.alert("PLease rotate your device for better viewing");
+        
     } else {
         window.alert('Click "ok" for Landscape.');
     }
-});
+}); */
+
+window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
+    const portrait = e.matches;
+
+    if (portrait) {
+        document.body.style.backgroundColor = "black"; // Change background color to black
+        window.alert("Please rotate your device for better viewing");
+    } else {
+        document.body.style.backgroundColor = "white"; // Change background color back to white
+        window.alert('Click "OK" for Landscape.');
+    }
+}); 

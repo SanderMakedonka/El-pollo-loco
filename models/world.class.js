@@ -22,7 +22,7 @@ class World {
     lastBottleThrown = new Date().getTime();
     chickenBackgroundSound = new Audio('./audio/chickens-background-sound.mp3');
     backGroundWindSound = new Audio('./audio/wind.mp3');
-    backGroundWindSoundvolume = 0.3;
+    backGroundWindSoundvolume = 0.0;
     characterHasWon = false;
 
 
