@@ -26,10 +26,6 @@ class World {
     characterHasWon = false;
 
 
-    /**
-     * object orientation. Into this function,
-     *  all subclasses,functions and Keyboard will be integrated
-     */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -42,7 +38,7 @@ class World {
     }
 
     /**
-     * Object Orientation.This function set character in world class. 
+     * hands over the world to the character
      */
     setWorld() {
         this.character.world = this;
@@ -50,10 +46,8 @@ class World {
 
 
     /**
-     * This function check collisions,check movable objects,check endboss character,
-     *  repeat clouds,check or all chickens are dead, check if games end and 
-     * remove ovebar within 100ms
-     */
+      * Check all collisions and throw objects
+      */
     run() {
         setStoppableInterval(() => {
             this.checkCollisions();
@@ -67,12 +61,9 @@ class World {
     }
 
     /**
-     * This funcion check collisions between enemy with endboss,
-     * pick up coins and bottle and
-     * check coollisions between Bottle with Chicken/Endboss
-     * 
+     * check all collisions and throw objects and
+     * pick up coins and bottle 
      */
-
     checkCollisions() {
         this.collisonWithEnemy();
         this.collisionWithEndboss();
@@ -83,11 +74,8 @@ class World {
     }
 
     /**
-     * Collision with enemy.If the character is above the ground, 
-     * then enemy is dead and the number of enemies is increased..
-     * If not, the character is hit and his energy is reduced
+     * Character is colliding with enemy and updates Character's health StatusBar
      */
-
     collisonWithEnemy() {
         this.level.enemies.forEach((enemy) => {
             if (this.characterCollisionWithEnemy(enemy)) {
@@ -104,8 +92,8 @@ class World {
     }
 
     /**
-     * Collision with endboss.When the character is injured by the Endboss
-     *  his life energy is reduced
+     * Character is colliding with endBoss.If the character is hited
+     *  his health StatusBar,energy is reduced
      */
     collisionWithEndboss() {
         if (this.characterCollisionWithEndboss()) {
@@ -114,21 +102,24 @@ class World {
         }
     }
 
-
+    /**
+     *  Character is colliding with enemy
+     */
     characterCollisionWithEnemy(enemy) {
         return this.character.isColliding(enemy) && enemy instanceof Chicken
             && !enemy.isDead() && !this.characterHasWon;
     }
 
-
+    /**
+     *  Character is colliding with endBoss
+     */
     characterCollisionWithEndboss() {
         return this.character.isColliding(this.endBoss) && !this.endBoss.isDead() && !this.characterHasWon
     }
 
     /**
-     *  Coins pick up
+     *  This function picked up Coins 
      */
-
     coinPickUp() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
@@ -141,9 +132,9 @@ class World {
     }
 
     /**
-    * Bottles pick up
+    * Character collides with a bottle. If the character hasn't already picked up 5 bottles,
+    * removes the picked bottle from the array, and updates a bottle status bar accordingly.
     */
-
     bottlePickUp() {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
@@ -158,11 +149,8 @@ class World {
     }
 
     /**
-     * this function has 2 actions
-     * if chicken is dead, then the number of chicken will be increased,
-     * and 2. play Kill Sound in background
+     * The bottle is colliding with the enemy, enemy is hit and dead
      */
-
     collisionBottleWithChicken() {
         this.throwableObjects.forEach((bottle) => {
             this.level.enemies.forEach(enemy => {
@@ -177,9 +165,9 @@ class World {
     }
 
     /**
-     * If endboss is dead, play attackSound in background, show endboss statusbar Energy in %
+     * The bottle is colliding with the endBoss and
+     * if endboss is hit, play attackSound in background,show endboss Statusbar Energy in %
      */
-
     collisionBottleWithEndboss() {
         this.throwableObjects.forEach((bottle) => {
             if (this.bottleHitEndboss(bottle)) {
@@ -193,21 +181,29 @@ class World {
         });
     }
 
-
+    /**
+     *Enemy is colliding with the bottle, the enemy is not dead
+     *and the enemy is not an instance of the Endboss class
+     */
     bottleHitChicken(enemy, bottle) {
         return enemy.isColliding(bottle) && !enemy.isDead() && !(enemy instanceof Endboss);
     }
 
-
+    /**
+     *The end boss is colliding with the bottle and the end boss is not dead.
+     */
     bottleHitEndboss(bottle) {
         return this.endBoss.isColliding(bottle) && !this.endBoss.isDead();
     }
 
-
+    /**
+     * Check throw Objects
+     * and maximum of one bottle can be thrown per second
+     */
     checkThrowObjects() {
         if (this.keyboard.D) {
             let currentBottleThrown = new Date().getTime();
-            if (currentBottleThrown - this.lastBottleThrown > 1000) { //A maximum of one bottle can be thrown per second
+            if (currentBottleThrown - this.lastBottleThrown > 1000) { 
                 if (this.picedBottles > 0) {
                     let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.character.otherDirection);
                     this.throwableObjects.push(bottle);
@@ -219,7 +215,9 @@ class World {
         }
     }
 
-
+    /**
+     * check and show endBoss status bar
+     */
     checkEndbossSeeCharacter() {
         if (this.character.x > 2190 && !this.endBoss.seeCharacter) {
             setTimeout(() => {
@@ -241,7 +239,6 @@ class World {
     /**
      * check if all chicken are dead
      */
-
     checkAllChickensAreDeath() {
         if (this.isAllChickensDead()) this.chickenBackgroundSound.pause();
     }
@@ -249,12 +246,13 @@ class World {
     /**
      * level back if all chicken are dead
      */
-
     isAllChickensDead() {
         return this.killedChickens === this.level.enemies.length - 1;
     }
 
-
+    /**
+     * check if game is over
+     */
     checkGameOver() {
         if (this.isGameOver()) {
             document.getElementById('overlay').removeEventListener('touchstart', showMovebarByTouch);
@@ -264,39 +262,37 @@ class World {
         }
     }
 
-
+    /**
+     * if character or endboss is dead, then game is over
+     */
     isGameOver() {
         return this.character.isDead() || this.endBoss.isDead();
     }
 
     /**
-     * 1.each time this funk repeats, shift left y=0
-     * 2.add bottle
-     * 3.back
-     * 4.forwards
-     * 5.push everything back to the right because the games will crash
-    
+     * Draw the world on the canvas and set the camera position
      */
     draw() {
         let self = this;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.translate(this.cameraX, 0); //1.
+        this.ctx.translate(this.cameraX, 0); 
         this.addObjectsToMap(this.level.backgroundObjects);
         this.noneFixedObjects();
-        this.addObjectsToMap(this.throwableObjects); //2.
-        this.ctx.translate(-this.cameraX, 0); //3.
+        this.addObjectsToMap(this.throwableObjects); 
+        this.ctx.translate(-this.cameraX, 0); 
         this.fixedObjects();
-        this.ctx.translate(this.cameraX, 0);//4.
-        this.addToMap(this.character); //5.
+        this.ctx.translate(this.cameraX, 0);
+        this.addToMap(this.character); 
         this.ctx.translate(-this.cameraX, 0);
         requestAnimationFrame(function () {
             self.draw();
         })
     }
 
-    /**
+     /**
+     * This function calls the addToMap function for all objects of the array 
      * 
-     * objects add to Map
+     * @param {object} objects - this parameter is an object
      */
     addObjectsToMap(objects) {
         objects.forEach(obj => {
@@ -305,11 +301,10 @@ class World {
     }
 
     /**
+     * The function is used to draw the object
      * 
-     * googeln canvas mirror picture add to map
-     * this.flipImage(mo); shortened Image below
+     * @param {object} mo 
      */
-
     addToMap(mo) {
         if (mo.otherDirection) this.flipImage(mo);
         mo.draw(this.ctx);
@@ -317,7 +312,11 @@ class World {
         if (mo.otherDirection) this.flipImageBack(mo); //end
     }
 
-
+     /**
+     * The function is flip the image when the character is walking in other direction
+     * 
+     * @param {object} mo  - this parameter is an object
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -325,18 +324,19 @@ class World {
         mo.x = mo.x * -1;
     }
 
-
+    /**
+     * The function is flip the image back when it was flipped before 
+     * 
+     * @param {object} mo -  this parameter is an object
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
 
     /**
-     * this function is responsible for adding clouds, coins, bottles,
-     *  and enemies to a map by calling the "addObjectsToMap"
-     *  method with the respective arrays of objects.
+     * add clouds, coins, bottles, enemies to Map
      */
-
     noneFixedObjects() {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
@@ -345,11 +345,8 @@ class World {
     }
 
     /**
-     * this function is responsible for adding Healthy Statusbar, 
-     * Bottle Statusbar, coins Statusbar, to check endBoss Statusbar
-     * 
+     * add health-, bottle- and coins Statusbar, and check endBoss Statusbar 
      */
-
     fixedObjects() {
         this.addToMap(this.healthStatusBar);
         this.addToMap(this.bottleStatusBar);
@@ -360,15 +357,9 @@ class World {
     }
 
     /**
-     * 
-     * First, the function declares two variables, "type" and "maxValue", 
-     * without assigning any initial values to them.
-     * Second, checks if the value of the "counter" parameter is equal to the string 'bottle'. 
-     * If it is, the function assigns the value of "this.bottleStatusBar" to the "type" variable 
-     * and assigns the value 5 to the "maxValue" variable.
-      This suggests that there is a bottle status bar and its maximum value is set to 5.
+     * checks if the value of the "counter" parameter is equal to the 'bottle'. 
+     * If it is, bottle status bar - maximum value is 5
      */
-
     addCounter(counter) {
         let type;
         let maxValue;
@@ -382,20 +373,26 @@ class World {
         this.setCounter(type, maxValue);
     }
 
-
+    /**
+     * Initialize and declaring the count variables
+     */
     setCounter(type, maxValue) {
         type.amount < maxValue ? this.ctx.fillStyle = "#f6d96b" : this.ctx.fillStyle = "#f1a61b";
         this.ctx.font = "bold 32px zabars";
         this.ctx.fillText(type.amount, type.counterX, type.counterY);
     }
 
-
+    /**
+     * Start background sounds
+     */
     startBackgroundSounds() {
         this.playBackgroundSound(this.chickenBackgroundSound);
         this.playBackgroundSound(this.backGroundWindSound);
     }
 
-
+    /**
+     * Play background music
+     */
     playBackgroundMusic() {
         currentMusic.addEventListener('ended', function () {
             currentMusic.currentTime = 0;
@@ -404,7 +401,9 @@ class World {
         currentMusic.play();
     }
 
-
+    /**
+     * Stop all sounds
+     */
     stopAllSounds() {
         this.chickenBackgroundSound.pause();
         this.backGroundWindSound.pause();
@@ -415,14 +414,16 @@ class World {
     }
 
     /**
-     *  Music Volume = 0.5 and windSound.volume = 0.3
+     *  Add music volume
      */
     soundsCalibration() {
-        currentMusic.volume = 0.5;
-        this.backGroundWindSound.volume = 0.3;
+        currentMusic.volume = 0.0;
+        this.backGroundWindSound.volume = 0.0;
     }
 
-
+    /**
+     * Play background Sound
+     */
     playBackgroundSound(sound) {
         sound.addEventListener('ended', function () {
             sound.currentTime = 0;
@@ -445,7 +446,6 @@ class World {
     /**
      * Check Endboss statusbar
      */
-
     checkEndBossStatusBar() {
         if (this.endBossStatusBar) {
             this.addToMap(this.endBossStatusBar);
