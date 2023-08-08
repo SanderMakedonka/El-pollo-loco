@@ -151,26 +151,25 @@ class Character extends MovableObject {
         this.endedSleeping();
         this.playWalkingSound();
     }
+
     
-    /*
     jump() {
         this.endedSleeping();
         super.jump();
-    } */
+    } 
 
      /**
-     * The Character ended the sleeping and he is jumping
-     * Only for movable Objects
-     */
+     *  After some time, simulate the chicken becoming dead
+     * /  
     jump() {
         super.jump();
-        this.playAnimation(this.IMAGES_JUMPING); // Play jump animation
-        this.jumpSound.play(); // Play jump sound
-        // After some time, simulate the chicken becoming dead
+        this.playAnimation(this.IMAGES_JUMPING); 
+        this.jumpSound.play(); 
         setTimeout(() => {
-            this.world.chicken.isDead = true; // Assuming there's a 'chicken' property in 'world'
+            this.world.chicken.isDead = true; 
         }, 1000); // Adjust the delay as needed
     }
+    */
    
     /**
      * play walking sound if
