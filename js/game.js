@@ -372,7 +372,7 @@ function addOrRemoveCSSClass(htmlId, state, cssClass) {
 
 /**
  * Detect Landscape or Portrait mode with JavaScript
- */
+*/
 window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
     const portrait = e.matches;
 
