@@ -690,7 +690,7 @@ a:hover {
 }
 
 
-/**/
+/**
 @media only screen and (min-width: 320px) and (max-width: 480px) {
     .fullscreen {
         display: none !important;
@@ -754,6 +754,7 @@ a:hover {
 /*============================================================================== 
 iPhone 5, 5S, 5C and 5SE || 320 x 568 || Default, Portrait and Landscape
 ================================================================================ */
+/*
 @media only screen and (min-width: 320px) and (max-width: 568px) {
     .fullscreen {
         display: none !important;
@@ -820,6 +821,7 @@ iPhone 5, 5S, 5C and 5SE || 320 x 568 || Default, Portrait and Landscape
 /*============================================================================== 
 iPhone 6, 6S, 7 and 8 || 375 x 667 || Default, Portrait and Landscape
 ================================================================================ */
+/*
 @media only screen and (min-width: 375px) and (max-width: 667px) {
     .fullscreen {
         display: none !important;
@@ -839,8 +841,8 @@ iPhone 6, 6S, 7 and 8 || 375 x 667 || Default, Portrait and Landscape
     #rotate-message p {
         display: block;
     }
-}
-
+} */
+/**/
 @media only screen and (min-width: 375px) and (max-width: 667px) and (orientation: portrait) {
     body {
         margin: 0;
@@ -903,7 +905,7 @@ iPhone 6, 6S, 7 and 8 || 375 x 667 || Default, Portrait and Landscape
         color: white;
     }
 }
-
+/**
 @media only screen and (min-width: 375px) and (max-width: 667px) and (orientation: landscape) {
     .fullscreen {
         display: none !important;
@@ -924,3 +926,4 @@ iPhone 6, 6S, 7 and 8 || 375 x 667 || Default, Portrait and Landscape
         display: block;
     }
 }
+*/
