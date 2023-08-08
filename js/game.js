@@ -375,6 +375,7 @@ function addOrRemoveCSSClass(htmlId, state, cssClass) {
 */
 window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
     const portrait = e.matches;
+    const messageElement = document.getElementById("message");
 
     if (portrait) {
         document.body.style.backgroundColor = "black"; 
@@ -384,3 +385,4 @@ window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
         window.alert('Click "OK" for Landscape.');
     }
 }); 
+

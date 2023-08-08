@@ -68,7 +68,7 @@ class Chicken extends MovableObject {
     }
 
     /**
-     * move right and left
+     * move chicken right and left
      */
     moving() {
         if (this.otherDirection === true) this.moveRight();

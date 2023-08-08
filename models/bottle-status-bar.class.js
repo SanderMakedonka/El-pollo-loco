@@ -8,8 +8,8 @@ class BottleStatusBar extends DrawableObject {
     counterY = 45;
 
     /**
-     * constructor is defined inside a class
-     * call the superclass constructor using super(), passing up the name parameter
+     * constructor musst be defined inside a class
+     * call the superclass constructor using super()
      * create a new Object 
      * bind this to the new object, so you can refer to this in your constructor code
      * 

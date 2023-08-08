@@ -91,7 +91,7 @@ class Endboss extends MovableObject {
     }
 
     /**
-     * plays animations for alert, hurt, and death states
+     * show animations for alert, hurt, and death states
      * based on the current state of the object.
      */
     setAnimations() {
@@ -118,7 +118,7 @@ class Endboss extends MovableObject {
     }
 
     /**
-     * play Attack- and Walking Animation
+     * show Attack- and Walking Animation
      */
     playMovingAnimations() {
         if (this.isInAttackingDistance()) this.playAttackAnimation();
@@ -141,7 +141,7 @@ class Endboss extends MovableObject {
     }
 
     /**
-     * Play attacked Animation
+     * show attacked Animation
      * attack sound
      */
     playAttackAnimation() {
@@ -150,7 +150,7 @@ class Endboss extends MovableObject {
     }
 
     /**
-     * Play die Animation
+     * Show die Animation
      * play die- and grill sound
      */
     playDieAnimation() {
@@ -164,7 +164,7 @@ class Endboss extends MovableObject {
     }
 
     /**
-     * Play is hurt Animation
+     * Show hurt Animation
      */
     playIsHurtAnimation() {
         this.playAnimation(this.IMAGES_HURT);

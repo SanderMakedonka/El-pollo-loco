@@ -110,7 +110,7 @@ class Character extends MovableObject {
 
     /**
      * Set Animations:
-     * play dead-,die-,hurt-,above ground-,jump- and sleeping Animation
+     * show dead-,die-,hurt-,above ground-,jump- and sleeping Animation
      */
     setAnimations() {
         if (this.isDead()) this.playDieAnimation();
@@ -153,6 +153,7 @@ class Character extends MovableObject {
     }
 
     /**
+     * The Character ended the sleeping and he is jumping
      * Only for movable Objects
      */
     jump() {
@@ -192,7 +193,7 @@ class Character extends MovableObject {
     }
 
     /**
-     * play dead Animation
+     * show dead Animation
      * play die sound
      */
     playDieAnimation() {

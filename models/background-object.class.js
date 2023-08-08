@@ -3,11 +3,10 @@ class BackgroundObject extends MovableObject {
     height = 480;
 
     /**
-     * constructor is defined inside a class
+     * constructor musst be defined inside a class
      * call the superclass constructor using super(), passing up the name parameter
      * create a new Object 
      * bind this to the new object
-     * 
      * This function load the Image path and define coordinates x- and y-
      */
     constructor(imagePath, x) {
