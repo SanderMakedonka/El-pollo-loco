@@ -372,7 +372,7 @@ function addOrRemoveCSSClass(htmlId, state, cssClass) {
 
 /**
  * Detect Landscape or Portrait mode with JavaScript
-*/
+ * 
 window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
     const portrait = e.matches;
     const messageElement = document.getElementById("message");
@@ -384,5 +384,7 @@ window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
         document.body.style.backgroundColor = "white";
         window.alert('Click "OK" for Landscape.');
     }
-}); 
+}); */
+
+
 

@@ -38,7 +38,11 @@
 </head>
 
 <body onload="init()">
-    <div id="fullscreen">
+    <div id="rotate-message" style="display: none;" >
+        <img class="rotate-img" src="img/rotate-white.png">
+        <p>Please rotate your device</p>
+    </div>
+    <div id="fullscreen" class="fullscreen">
         <h1 id="header">El Pollo Loco</h1>
         <div id="play-content">
             <canvas id="canvas" width="720px" height="480px">
@@ -83,7 +87,7 @@
     <div id="footer"><a href="impressum.html" target="_blank">
         Impressum</a> | <a href="datenschutz.html" target="_blank">Datenschutz</a></div>
 
-
+    
 </body>
 
 </html>

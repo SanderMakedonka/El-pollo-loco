@@ -1,7 +1,7 @@
 let level1;
 
 /**
- *create and return a new instance of a "Level" object
+ * Level1 are generated with all objects
  */
 function getLevel1() {
     return new Level (
@@ -14,7 +14,8 @@ function getLevel1() {
 }
 
 /**
- *create and return "Level" of enemies
+ * babyChickens and chicken are generated on the X axis with with a defined distance
+ * @returns object
  */
 function getLevel1Enemies() {
     return [
@@ -35,7 +36,8 @@ function getLevel1Enemies() {
 }
 
 /**
- *create and return "Level" of Clouds
+ * clouds are generated on the X axis with with a defined distance
+ * @returns object - clouds with defined distance
  */
 function getLevel1Clouds() {
     return [
@@ -53,7 +55,8 @@ function getLevel1Clouds() {
 }
 
 /**
- *create and return "Level" of Background Objects
+ * backgrounds are generated on the X axis with with a defined distance
+ * @returns object - backgrounds with defined distance
  */
 function getLevel1BackgroundObjects() {
     return [
@@ -83,7 +86,8 @@ function getLevel1BackgroundObjects() {
 }
 
 /**
- *create and return "Level" of Coins
+ * coins are generated on the X axis with with a defined distance
+ * @returns object - coins with defined distance on x and y axis
  */
 function getLevel1Coins() {
     return [
@@ -106,7 +110,8 @@ function getLevel1Coins() {
 }
 
 /**
- *create and return "Level" of Bottles
+ * bottles are generated on the X axis with with a defined distance
+ * @returns object - bottles with defined distance on x and y axis
  */
 function getLevel1Bottles() {
     return [

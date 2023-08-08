@@ -15,6 +15,29 @@ body {
     width: 100vw;
 }
 
+#rotate-message {
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    padding: 20px;
+    background-color: none;
+    color: black;
+}
+
+#rotate-message p {
+    display: block;
+    margin: 0;
+    color: black;
+    font-size: 30px;
+}
+
+.rotate-img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 40px;
+    height: 40px;
+}
+
 button {
     font-family: zabars, Verdana, Geneva, Tahoma, sans-serif;
     font-size: 24px;
@@ -395,15 +418,25 @@ a:hover {
 /* Smartphones */
 
 @media only screen and (max-width: 720px) {
-    canvas{
+    canvas {
         width: 100%;
     }
+
     #fullscreen {
         width: 100%;
     }
+
     #play-content {
         position: relative;
         width: 100vw;
+    }
+
+    #rotate-message {
+        display: block;
+    }
+
+    #rotate-message p {
+        display: block;
     }
 }
 
@@ -417,6 +450,14 @@ a:hover {
     #info,
     #header {
         display: none;
+    }
+
+    #rotate-message {
+        display: block;
+    }
+
+    #rotate-message p {
+        display: block;
     }
 }
 
@@ -434,6 +475,14 @@ a:hover {
         right: 0;
         max-height: 480px;
         max-width: 720px;
+    }
+
+    #rotate-message {
+        display: block;
+    }
+
+    #rotate-message p {
+        display: block;
     }
 }
 
@@ -456,6 +505,13 @@ a:hover {
 }
 
 @media (max-width: 570px) {
+    #rotate-message {
+        display: block;
+    }
+
+    #rotate-message p {
+        display: block;
+    }
 
     #start-game,
     #restart-game {
@@ -496,6 +552,13 @@ a:hover {
 }
 
 @media (max-width: 470px) {
+    #rotate-message {
+        display: block;
+    }
+
+    #rotate-message p {
+        display: block;
+    }
 
     #start-game,
     #restart-game {
@@ -560,6 +623,13 @@ a:hover {
 }
 
 @media (max-width: 350px) {
+    #rotate-message {
+        display: block;
+    }
+
+    #rotate-message p {
+        display: block;
+    }
 
     #start-game,
     #restart-game {
@@ -616,5 +686,241 @@ a:hover {
 
     #info img {
         height: 12px;
+    }
+}
+
+
+/**/
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    .fullscreen {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    #footer {
+        display: none !important;
+
+    }
+
+    #rotate-message {
+        display: block;
+    }
+
+    #rotate-message p {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
+    .fullscreen {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    #footer {
+        display: none !important;
+
+    }
+
+    #rotate-message {
+        display: block;
+    }
+
+    #rotate-message p {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) and (orientation: landscape) {
+    .fullscreen {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    #footer {
+        display: none !important;
+
+    }
+
+    #rotate-message {
+        display: block;
+    }
+
+    #rotate-message p {
+        display: block;
+    }
+}
+
+/*============================================================================== 
+iPhone 5, 5S, 5C and 5SE || 320 x 568 || Default, Portrait and Landscape
+================================================================================ */
+@media only screen and (min-width: 320px) and (max-width: 568px) {
+    .fullscreen {
+        display: none !important;
+        visibility: hidden !important;
+
+    }
+
+    #footer {
+        display: none !important;
+
+    }
+
+    #rotate-message {
+        display: block;
+    }
+
+    #rotate-message p {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 568px) and (orientation: portrait) {
+    .fullscreen {
+        display: none !important;
+        visibility: hidden !important;
+
+    }
+
+    #footer {
+        display: none !important;
+
+    }
+
+    #rotate-message {
+        display: block;
+    }
+
+    #rotate-message p {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 568px) and (orientation: landscape) {
+    .fullscreen {
+        display: none !important;
+        visibility: hidden !important;
+
+    }
+
+    #footer {
+        display: none !important;
+
+    }
+
+    #rotate-message {
+        display: block;
+    }
+
+    #rotate-message p {
+        display: block;
+    }
+}
+
+/*============================================================================== 
+iPhone 6, 6S, 7 and 8 || 375 x 667 || Default, Portrait and Landscape
+================================================================================ */
+@media only screen and (min-width: 375px) and (max-width: 667px) {
+    .fullscreen {
+        display: none !important;
+        visibility: hidden !important;
+
+    }
+
+    #footer {
+        display: none !important;
+
+    }
+
+    #rotate-message {
+        display: block;
+    }
+
+    #rotate-message p {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 375px) and (max-width: 667px) and (orientation: portrait) {
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    #overlay {
+        display: none !important;
+        visibility: hidden !important;
+
+    }
+    #info {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    .fullscreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgb(21, 20, 20);
+        display: block !important;
+        visibility: visible !important;
+        z-index: 9999;
+    }
+
+    p {
+        color: white;
+    }
+
+    #footer {
+        display: none !important;
+
+    }
+
+    #canvas {
+        display: none !important;
+    }
+
+    #header {
+        display: none !important;
+    }
+
+    #rotate-message {
+        display: block !important;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        display: block !important;
+        z-index: 10000;
+        color: white;
+    }
+
+    #rotate-message p {
+        display: block !important;
+        color: white;
+    }
+}
+
+@media only screen and (min-width: 375px) and (max-width: 667px) and (orientation: landscape) {
+    .fullscreen {
+        display: none !important;
+        visibility: hidden !important;
+
+    }
+
+    #footer {
+        display: none !important;
+
+    }
+
+    #rotate-message {
+        display: block;
+    }
+
+    #rotate-message p {
+        display: block;
     }
 }
