@@ -96,7 +96,6 @@ class World {
         });
     }
 
-
     /**
      * Character is colliding with endBoss.
      * character is demaged, then
