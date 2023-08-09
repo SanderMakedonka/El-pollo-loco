@@ -87,7 +87,7 @@ class World {
                         enemy.kill();
                         enemy.chickenKillSound.play();
                         this.killedChickens++;;
-                    }, 100);        //delay of 1 second
+                    }, 1000);        //delay of 1 second
                 } else {
                     this.character.hit();
                     this.healthStatusBar.setPercentage(this.character.energy);
@@ -95,6 +95,8 @@ class World {
             }
         });
     }
+
+    
 
     /**
      * Character is colliding with endBoss.
