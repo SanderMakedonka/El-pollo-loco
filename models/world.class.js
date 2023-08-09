@@ -87,7 +87,7 @@ class World {
                         enemy.kill();
                         enemy.chickenKillSound.play();
                         this.killedChickens++;;
-                    }, 1000);        //delay of 1 second
+                    }, 100);        //delay 
                 } else {
                     this.character.hit();
                     this.healthStatusBar.setPercentage(this.character.energy);
