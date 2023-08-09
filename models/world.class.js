@@ -83,9 +83,11 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.characterCollisionWithEnemy(enemy)) {
                 if (this.character.isAboveGround()) {
-                    enemy.kill();
-                    enemy.chickenKillSound.play();
-                    this.killedChickens++;
+                    setTimeout(() => {
+                        enemy.kill();
+                        enemy.chickenKillSound.play();
+                        this.killedChickens++;;
+                    }, 100);        //delay of 1 second
                 } else {
                     this.character.hit();
                     this.healthStatusBar.setPercentage(this.character.energy);
@@ -93,6 +95,7 @@ class World {
             }
         });
     }
+
 
     /**
      * Character is colliding with endBoss.
@@ -214,7 +217,7 @@ class World {
     checkThrowObjects() {
         if (this.keyboard.D) {
             let currentBottleThrown = new Date().getTime();
-            if (currentBottleThrown - this.lastBottleThrown > 1000) { 
+            if (currentBottleThrown - this.lastBottleThrown > 1000) {
                 if (this.picedBottles > 0) {
                     let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.character.otherDirection);
                     this.throwableObjects.push(bottle);
@@ -286,25 +289,25 @@ class World {
     draw() {
         let self = this;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.translate(this.cameraX, 0); 
+        this.ctx.translate(this.cameraX, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.noneFixedObjects();
-        this.addObjectsToMap(this.throwableObjects); 
-        this.ctx.translate(-this.cameraX, 0); 
+        this.addObjectsToMap(this.throwableObjects);
+        this.ctx.translate(-this.cameraX, 0);
         this.fixedObjects();
         this.ctx.translate(this.cameraX, 0);
-        this.addToMap(this.character); 
+        this.addToMap(this.character);
         this.ctx.translate(-this.cameraX, 0);
         requestAnimationFrame(function () {
             self.draw();
         })
     }
 
-     /**
-     * This function calls the addToMap function for all objects of the array 
-     * 
-     * @param {object} objects - this parameter is an object
-     */
+    /**
+    * This function calls the addToMap function for all objects of the array 
+    * 
+    * @param {object} objects - this parameter is an object
+    */
     addObjectsToMap(objects) {
         objects.forEach(obj => {
             this.addToMap(obj);
@@ -323,11 +326,11 @@ class World {
         if (mo.otherDirection) this.flipImageBack(mo); //end
     }
 
-     /**
-     * The function is flip the image when the character is walking in other direction
-     * 
-     * @param {object} mo  - this parameter is an object
-     */
+    /**
+    * The function is flip the image when the character is walking in other direction
+    * 
+    * @param {object} mo  - this parameter is an object
+    */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
